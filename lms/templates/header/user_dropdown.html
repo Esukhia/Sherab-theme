@@ -85,6 +85,8 @@ document.addEventListener("DOMContentLoaded", function() {
             var mobileEmailEl = document.getElementById("mobile-user-display-email");
             
             var nameStr = userInfo.name || userInfo.username || (nameEl ? nameEl.getAttribute("data-mako-name") : "") || "";
+            var rawName = userInfo.name || (nameEl ? nameEl.getAttribute("data-mako-name") : "") || "";
+            var rawUsername = userInfo.username || "";
             var emailStr = userInfo.email || (emailEl ? emailEl.getAttribute("data-mako-email") : "") || "";
             
             if(nameEl) nameEl.textContent = nameStr;
@@ -93,30 +95,37 @@ document.addEventListener("DOMContentLoaded", function() {
             if(mobileEmailEl) mobileEmailEl.textContent = emailStr;
             
             var hasProfileImage = ${'true' if has_profile_image else 'false'};
-            
-            if (!hasProfileImage && nameStr) {
-                // Check if name contains only Latin characters (English) and basic punctuation
-                var isEnglishName = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\.,\'-]+$/.test(nameStr);
-                
-                if (isEnglishName) {
-                    var initials = "";
-                    var words = nameStr.trim().split(/\s+/).filter(function(w){ return w.length > 0;});
-                    if (words.length > 1) {
-                        initials = words[0][0].toUpperCase() + words[words.length - 1][0].toUpperCase();
-                    } else if (words.length === 1) {
-                        initials = words[0][0].toUpperCase();
+
+            function getInitials(name, username) {
+                var STARTS_WITH_LATIN = /^[A-Za-zÀ-ɏ]/;
+                var fullName = (name || "").trim();
+
+                if (fullName) {
+                    if (!STARTS_WITH_LATIN.test(fullName)) {
+                        return null;
                     }
-                    
-                    if (initials) {
-                        document.querySelectorAll('.nav-profile-initials, .nav-menu-id-initials').forEach(function(el) {
-                            el.textContent = initials;
-                            el.style.display = 'flex';
-                        });
-                        document.querySelectorAll('.nav-profile-fallback, .nav-menu-id-fallback').forEach(function(el) {
-                            el.style.display = 'none';
-                        });
-                    }
+                    var words = fullName.split(/\s+/).filter(Boolean);
+                    var last = words.length > 1 ? words[words.length - 1][0] : "";
+                    return (words[0][0] + last).toUpperCase();
                 }
+
+                var handle = (username || "").trim();
+                if (!handle || !STARTS_WITH_LATIN.test(handle)) {
+                    return null;
+                }
+                return handle[0].toUpperCase();
+            }
+
+            if (!hasProfileImage) {
+                var initials = getInitials(rawName, rawUsername);
+
+                document.querySelectorAll('.nav-profile-initials, .nav-menu-id-initials').forEach(function(el) {
+                    el.textContent = initials || "";
+                    el.style.display = initials ? 'flex' : 'none';
+                });
+                document.querySelectorAll('.nav-profile-fallback, .nav-menu-id-fallback').forEach(function(el) {
+                    el.style.display = initials ? 'none' : '';
+                });
             }
         }
     } catch(e) {
