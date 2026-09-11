@@ -27,10 +27,10 @@ email = self.real_user.email
         <span class="nav-profile-initials" style="display:none;"></span>
         % if has_profile_image:
             <img class="nav-profile-img user-image-frame" src="${profile_image_url}" alt="" />
-            <svg class="nav-profile-fallback" style="display:none;" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <svg class="nav-profile-fallback" style="display:none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         % else:
             <img class="nav-profile-img user-image-frame" src="" alt="" style="display:none;" />
-            <svg class="nav-profile-fallback" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <svg class="nav-profile-fallback" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         % endif
     </button>
     <div class="nav-menu" id="profileMenu" role="menu" aria-labelledby="profileBtn">
@@ -38,10 +38,10 @@ email = self.real_user.email
             <span class="nav-menu-id-avatar nav-menu-id-initials" style="display:none;"></span>
             % if has_profile_image:
                 <img class="nav-menu-id-avatar nav-menu-id-img user-image-frame" src="${profile_image_url}" alt="" />
-                <span class="nav-menu-id-avatar nav-menu-id-fallback" style="display:none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
+                <span class="nav-menu-id-avatar nav-menu-id-fallback" style="display:none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
             % else:
                 <img class="nav-menu-id-avatar nav-menu-id-img user-image-frame" src="" alt="" style="display:none;" />
-                <span class="nav-menu-id-avatar nav-menu-id-fallback"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
+                <span class="nav-menu-id-avatar nav-menu-id-fallback"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
             % endif
             <span class="nav-menu-id-text">
                 <span class="nav-menu-id-name" id="user-display-name" data-mako-name="${displayname}">${displayname}</span>
